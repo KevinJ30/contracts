@@ -39,7 +39,7 @@ export default function Candidacy() : JSX.Element {
                             </td>
 
                             <td>
-                                <a href={item.url} target={"_blank"}>{item.url}</a>
+                                <a href={item.url} target={"_blank"} rel="noreferrer">{item.url}</a>
                             </td>
 
                             <td>

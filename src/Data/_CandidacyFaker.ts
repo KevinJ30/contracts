@@ -2,7 +2,7 @@ import {CandidacyStateEnum} from "../Pages/Candidacy/Types/CandidacyType";
 import {candidacy as CandidacyType} from "../Pages/Candidacy/Types/CandidacyType";
 
 
-export let CandidacyFaker : Array<CandidacyType> = [
+export let CandidacyFaker: Array<CandidacyType> = [
     {
         candidacy_type: "spontané",
         business_name: "Natural Solution",
