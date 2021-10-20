@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import {candidacy as CandidacyType} from './Types/CandidacyType';
 import {CandidacyFaker} from "../../Data/_CandidacyFaker";
+import DateFormat from "../../Components/Date";
+import CandidacyState from "../../Components/CandidacyState";
 
 export default function Candidacy() : JSX.Element {
     const [candidacy, setCandidacy] = useState<CandidacyType[]>([])
@@ -41,15 +43,15 @@ export default function Candidacy() : JSX.Element {
                             </td>
 
                             <td>
-                                {item.date_deposit.getDate()}
+                                <DateFormat value={item.date_deposit} />
                             </td>
 
                             <td>
-                                {item.date_relaunch.getDate()}
+                                <DateFormat value={item.date_relaunch} />
                             </td>
 
                             <td>
-                                {item.status}
+                                <CandidacyState value={item.status} />
                             </td>
                         </tr>
                     )}
