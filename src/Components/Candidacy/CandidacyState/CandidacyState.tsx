@@ -1,12 +1,18 @@
-import React from 'react';
-import { IconHourglass, IconDone, IconDelete } from '../../Elements/Icons/Icons';
-import {CandidacyStateEnum} from "../../Pages/Candidacy/Types/CandidacyType";
+import React, {useEffect} from 'react';
+import { IconHourglass, IconDone, IconDelete } from '../../../Elements/Icons/Icons';
+import {CandidacyStateEnum} from "../../../Pages/Candidacy/Types/CandidacyType";
 
 type Props = {
     value: number
 }
 
 export default function CandidacyState(props: Props) {
+    useEffect(() => {
+        if(props.value < 0 || props.value > 3) {
+            throw 'Le state ne peut pas être compris dans cette valeur';
+        }
+    })
+
     let determinedState = (state: CandidacyStateEnum) : JSX.Element => {
 
         switch(state) {
