@@ -14,9 +14,5 @@ describe('Candidacy pages test', () => {
 
         let candidacyTableItem : NodeListOf<HTMLTableRowElement> = document.querySelectorAll('table tbody tr');
         expect(2).toEqual(candidacyTableItem.length);
-    })
-
-    it('should display correctly element of the table', () => {
-
-    })
+    });
 })
