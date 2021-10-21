@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {candidacy as CandidacyType} from './Types/CandidacyType';
 import {CandidacyFaker} from "../../Data/_CandidacyFaker";
 import DateFormat from "../../Components/Date";
-import CandidacyState from "../../Components/CandidacyState";
+import CandidacyState from '../../Components/Candidacy/CandidacyState';
 
 export default function Candidacy() : JSX.Element {
     const [candidacy, setCandidacy] = useState<CandidacyType[]>([])

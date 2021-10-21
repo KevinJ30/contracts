@@ -1,22 +1,23 @@
 import React from 'react';
-import {CandidacyStateEnum} from "../Pages/Candidacy/Types/CandidacyType";
+import { IconHourglass, IconDone, IconDelete } from '../../Elements/Icons/Icons';
+import {CandidacyStateEnum} from "../../Pages/Candidacy/Types/CandidacyType";
 
 type Props = {
     value: number
 }
 
 export default function CandidacyState(props: Props) {
-    let determinedState = (state: CandidacyStateEnum) : string => {
+    let determinedState = (state: CandidacyStateEnum) : JSX.Element => {
 
         switch(state) {
             case CandidacyStateEnum.progress:
-                return 'En cours'
+                return <IconHourglass />;
             case CandidacyStateEnum.relaunch:
-                return 'Relancé';
+                return <IconHourglass />;
             case CandidacyStateEnum.accepted:
-                return 'Accepté';
+                return <IconDone />;
             case CandidacyStateEnum.refused:
-                return 'Refusé';
+                return <IconDelete />;
         }
     }
 
