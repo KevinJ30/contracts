@@ -9,7 +9,7 @@ export let CandidacyFaker: Array<CandidacyType> = [
         url: "https://joudrier-kevin.fr",
         date_deposit: new Date(),
         date_relaunch: new Date(),
-        status: CandidacyStateEnum.refused
+        status: CandidacyStateEnum.accepted
     },
 
     {

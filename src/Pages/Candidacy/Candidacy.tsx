@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import {candidacy as CandidacyType} from './Types/CandidacyType';
 import {CandidacyFaker} from "../../Data/_CandidacyFaker";
-import DateFormat from "../../Components/Date";
-import CandidacyState from '../../Components/Candidacy/CandidacyState/CandidacyState';
+import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
 
 export default function Candidacy() : JSX.Element {
     const [candidacy, setCandidacy] = useState<CandidacyType[]>([])
@@ -29,31 +28,7 @@ export default function Candidacy() : JSX.Element {
                     </thead>
                     <tbody>
                     { candidacy.map((item, key) =>
-                        <tr key={key}>
-                            <td>
-                                {item.candidacy_type}
-                            </td>
-
-                            <td>
-                                {item.business_name}
-                            </td>
-
-                            <td>
-                                <a href={item.url} target={"_blank"} rel="noreferrer">{item.url}</a>
-                            </td>
-
-                            <td>
-                                <DateFormat value={item.date_deposit} />
-                            </td>
-
-                            <td>
-                                <DateFormat value={item.date_relaunch} />
-                            </td>
-
-                            <td>
-                                <CandidacyState value={item.status} />
-                            </td>
-                        </tr>
+                        <CandidacyItem item={item} />
                     )}
                     </tbody>
                 </table>
