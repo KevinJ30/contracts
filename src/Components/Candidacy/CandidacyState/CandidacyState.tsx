@@ -6,10 +6,22 @@ type Props = {
     value: number
 }
 
-export default function CandidacyState(props: Props) {
+/**
+ * Composant Candidacy State
+ * 
+ * Etat
+ * ----
+ * 
+ * - progress
+ * - relaunch
+ * - refused
+ * - accepted
+ **/
+
+export default function CandidacyState(props: Props) : JSX.Element {
     useEffect(() => {
         if(props.value < 0 || props.value > 3) {
-            throw 'Le state ne peut pas être compris dans cette valeur';
+            throw new Error('Le state ne peut pas être compris dans cette valeur');
         }
     })
 
