@@ -2,7 +2,8 @@ export enum CandidacyStateEnum {
     progress,
     relaunch,
     accepted,
-    refused
+    refused,
+    edit
 }
 
 export type candidacy = {

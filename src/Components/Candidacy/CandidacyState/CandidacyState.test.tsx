@@ -10,8 +10,8 @@ describe('Component CandidacyState', () => {
      * @param {number} state 
      * @param {string} icon
      **/
-    const assertState = (state : number, icon : string) : void => {
-        render(<CandidacyState value={state} />);
+    const assertState = (states : number, icon : string) : void => {
+        render(<CandidacyState value={states} />);
 
         const iconElement = document.querySelector('.' + icon);
         expect(iconElement).not.toBeNull()
@@ -21,6 +21,11 @@ describe('Component CandidacyState', () => {
     it('should throw exception if not value on the component', () => {
         expect(() => render(<CandidacyState value={-1} />)).toThrow('Le state ne peut pas être compris dans cette valeur');
     });
+
+    // Doit afficher l'icone pen quand l'état et a edit
+    it('should display IconHourglass when state is progress', () => {
+        assertState(CandidacyStateEnum.edit, 'icon-pen');
+    })
 
     // Doit afficher l'icone hourglass quand l'état et a progress
     it('should display IconHourglass when state is progress', () => {

@@ -6,6 +6,7 @@ import { candidacy as CandidacyType, CandidacyStateEnum } from '../../Pages/Cand
 // Components
 import Date from '../../Components/Date';
 import CandidacyState from './CandidacyState/CandidacyState';
+import CandidacyActions from '../../Pages/Candidacy/CandidacyActions';
 
 type Props = {
     item: CandidacyType
@@ -37,6 +38,7 @@ export default function CandidacyItem(props: Props) : JSX.Element {
                 <td><Date value={props.item.date_deposit} /></td>
                 <td><Date value={props.item.date_deposit} /></td>
                 <td><CandidacyState value={props.item.status} /></td>
+                <td><CandidacyActions item={props.item} /></td>
             </tr>
         </React.Fragment>
     );

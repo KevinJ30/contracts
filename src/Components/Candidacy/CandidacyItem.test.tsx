@@ -1,4 +1,4 @@
-import {render} from '@testing-library/react';
+import {render, RenderResult} from '@testing-library/react';
 import CandidacyItem from './CandidacyItem';
 
 import {candidacy as CandidacyType, CandidacyStateEnum} from '../../Pages/Candidacy/Types/CandidacyType';
@@ -14,18 +14,26 @@ const item : CandidacyType = {
     status: CandidacyStateEnum.refused
 }
 
+const renderCandidacyItemTest = () : RenderResult => {
+    return render(
+        <table>
+            <tbody>
+                <CandidacyItem item={item} />
+            </tbody>
+        </table>
+    );
+}
+
 describe('Components CandidacyItem', () => {
     
     // Doit se cahrgé sans erreur
     it('Should load correctly component', () => {
-        
-
-        render(<CandidacyItem item={item} />);
+        renderCandidacyItemTest();
     })
 
     // Doit afficher un <tr>
     it('should display <tr></tr>', () => {
-        render(<CandidacyItem item={item} />)
+        renderCandidacyItemTest();
 
         let tableRow = document.querySelector('tr');
         expect(tableRow).not.toBeNull();
@@ -33,15 +41,16 @@ describe('Components CandidacyItem', () => {
 
     // Le <tr> doit contenir les données
     it('should display data on the <tr>', () => {
-        render(<CandidacyItem item={item} />)
+        renderCandidacyItemTest();
 
         let tableRow = document.querySelector('tr');
+        let iconStatus = document.querySelector('.state');
 
         expect(tableRow).toHaveTextContent(item.candidacy_type);
         expect(tableRow).toHaveTextContent(item.business_name);
-        expect(tableRow).toHaveTextContent(item.status.toString());
         expect(tableRow).toHaveTextContent(dayjs(item.date_deposit).format(DATE_FORMAT))
         expect(tableRow).toHaveTextContent(dayjs(item.date_relaunch).format(DATE_FORMAT))
         expect(tableRow).toHaveTextContent(item.url);
+        expect(iconStatus).not.toBeNull();
     })
 })

@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import {candidacy as CandidacyType} from './Types/CandidacyType';
+import {candidacy, candidacy as CandidacyType} from './Types/CandidacyType';
 import {CandidacyFaker} from "../../Data/_CandidacyFaker";
 import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
+
+export type ItemContextType = {
+    items: Array<candidacy>|[],
+    setItems: Function
+}
+
+const defaultItemContext : ItemContextType = {
+    items: [],
+    setItems: () => {}
+};
+
+export const ItemArrayContext = React.createContext<ItemContextType>(defaultItemContext);
 
 export default function Candidacy() : JSX.Element {
     const [candidacy, setCandidacy] = useState<CandidacyType[]>([])
@@ -24,12 +36,23 @@ export default function Candidacy() : JSX.Element {
                         <th>Date de dépôt</th>
                         <th>Date de relance</th>
                         <th>État</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    { candidacy.map((item, key) =>
-                        <CandidacyItem item={item} />
-                    )}
+                        <ItemArrayContext.Provider value={
+                            {
+                                items : candidacy,
+                                setItems: setCandidacy
+                            }
+                        }>
+                            { candidacy.map(
+                                (item, key) =>
+                                    
+                                    <CandidacyItem key={key}  item={item} />
+                                )
+                            }
+                        </ItemArrayContext.Provider>
                     </tbody>
                 </table>
             </div>

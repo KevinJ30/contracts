@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { IconHourglass, IconDone, IconDelete } from '../../../Elements/Icons/Icons';
+import { IconHourglass, IconDone, IconDelete, IconPen } from '../../../Elements/Icons/Icons';
 import {CandidacyStateEnum} from "../../../Pages/Candidacy/Types/CandidacyType";
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 
 export default function CandidacyState(props: Props) : JSX.Element {
     useEffect(() => {
-        if(props.value < 0 || props.value > 3) {
+        if(props.value < 0 || props.value > 4) {
             throw new Error('Le state ne peut pas être compris dans cette valeur');
         }
     })
@@ -29,13 +29,25 @@ export default function CandidacyState(props: Props) : JSX.Element {
 
         switch(state) {
             case CandidacyStateEnum.progress:
-                return <IconHourglass />;
+                return <div className="state state-progress">
+                    <IconHourglass />
+                </div>
             case CandidacyStateEnum.relaunch:
-                return <IconHourglass />;
+                return <div className="state state-progress">
+                    <IconHourglass />
+                </div>
             case CandidacyStateEnum.accepted:
-                return <IconDone />;
+                return <div className="state state-accepted">
+                    <IconDone />
+                </div>
             case CandidacyStateEnum.refused:
-                return <IconDelete />;
+                return <div className="state state-refused">
+                    <IconDelete />
+                </div>
+            case CandidacyStateEnum.edit:
+                return <div className="state state-edit">
+                <IconPen />
+            </div>
         }
     }
 
