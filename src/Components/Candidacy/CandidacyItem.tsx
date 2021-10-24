@@ -24,8 +24,8 @@ export default function CandidacyItem(props: Props) : JSX.Element {
                 return 'table-danger'
             case CandidacyStateEnum.accepted:
                 return 'table-success';
-            default:
-                return '';
+            case CandidacyStateEnum.edit:
+                return 'table-default';
         }
     }
 

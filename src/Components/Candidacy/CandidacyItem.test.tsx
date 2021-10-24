@@ -14,14 +14,24 @@ const item : CandidacyType = {
     status: CandidacyStateEnum.refused
 }
 
-const renderCandidacyItemTest = () : RenderResult => {
+const renderCandidacyItemTest = (value = item) : RenderResult => {
     return render(
         <table>
             <tbody>
-                <CandidacyItem item={item} />
+                <CandidacyItem item={value} />
             </tbody>
         </table>
     );
+}
+
+const assertRowColor = (status : CandidacyStateEnum , classname : string) => {
+    renderCandidacyItemTest({
+        ...item,
+        status: status
+      });
+
+      let rowElement : HTMLTableRowElement|null  = document.querySelector('tr');
+      expect(rowElement?.classList.contains(classname)).toEqual(true);
 }
 
 describe('Components CandidacyItem', () => {
@@ -52,5 +62,27 @@ describe('Components CandidacyItem', () => {
         expect(tableRow).toHaveTextContent(dayjs(item.date_relaunch).format(DATE_FORMAT))
         expect(tableRow).toHaveTextContent(item.url);
         expect(iconStatus).not.toBeNull();
+    })
+
+    describe('Colors depending on the state', () => {
+        it('should display white color with a state edit', () => {
+            assertRowColor(CandidacyStateEnum.edit, 'table-default');
+        })
+
+        it('should display blue color with a state progress', () => {
+            assertRowColor(CandidacyStateEnum.progress, 'table-primary');
+        })
+
+        it('should display blue color with a state relaunch', () => {
+            assertRowColor(CandidacyStateEnum.relaunch, 'table-primary');
+        })
+
+        it('should display red color with a state refused', () => {
+            assertRowColor(CandidacyStateEnum.refused, 'table-danger');
+        })
+
+        it('should display green color with a state accepted', () => {
+            assertRowColor(CandidacyStateEnum.accepted, 'table-success');
+        })
     })
 })

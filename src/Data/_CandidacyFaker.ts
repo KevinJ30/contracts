@@ -9,7 +9,7 @@ export let CandidacyFaker: Array<CandidacyType> = [
         url: "https://joudrier-kevin.fr",
         date_deposit: new Date(),
         date_relaunch: new Date(),
-        status: CandidacyStateEnum.accepted
+        status: CandidacyStateEnum.edit
     },
 
     {
@@ -19,5 +19,14 @@ export let CandidacyFaker: Array<CandidacyType> = [
         date_deposit: new Date(),
         date_relaunch: new Date(),
         status: CandidacyStateEnum.progress
+    },
+
+    {
+        candidacy_type: "spontané",
+        business_name: "Openclassrooms",
+        url: "https://joudrier-kevin.fr",
+        date_deposit: new Date(),
+        date_relaunch: new Date(),
+        status: CandidacyStateEnum.refused
     }
 ];

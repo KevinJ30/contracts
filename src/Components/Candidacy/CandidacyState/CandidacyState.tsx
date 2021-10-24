@@ -26,7 +26,6 @@ export default function CandidacyState(props: Props) : JSX.Element {
     })
 
     let determinedState = (state: CandidacyStateEnum) : JSX.Element => {
-
         switch(state) {
             case CandidacyStateEnum.progress:
                 return <div className="state state-progress">
