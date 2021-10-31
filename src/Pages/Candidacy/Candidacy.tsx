@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {candidacy, candidacy as CandidacyType} from './Types/CandidacyType';
 import {CandidacyFaker} from "../../Data/_CandidacyFaker";
 import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
+import { Modal } from '../../Components/Modal/Modal';
 
 export type ItemContextType = {
     items: Array<candidacy>|[],
@@ -56,6 +57,13 @@ export default function Candidacy() : JSX.Element {
                     </tbody>
                 </table>
             </div>
+
+            <Modal title={"Ma super Modal"} actionContent={"Ouvrire la modal"} actionClassName="btn btn-primary">
+                <div className="container">
+                    <h1>Ma super Modal</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eveniet minima cupiditate dicta molestiae delectus itaque nulla? Sequi, praesentium natus esse tempora dolorum quibusdam numquam nobis voluptatibus libero, harum aliquam officiis, dolore dolor recusandae ex possimus blanditiis consectetur odio voluptas!</p>
+                </div>
+            </Modal>
         </main>
     );
 }
