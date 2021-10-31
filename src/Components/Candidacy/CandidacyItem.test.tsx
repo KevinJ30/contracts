@@ -1,9 +1,10 @@
-import {render, RenderResult} from '@testing-library/react';
+import {render, RenderResult, fireEvent} from '@testing-library/react';
 import CandidacyItem from './CandidacyItem';
 
 import {candidacy as CandidacyType, CandidacyStateEnum} from '../../Pages/Candidacy/Types/CandidacyType';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '../Date';
+import Candidacy from '../../Pages/Candidacy/Candidacy';
 
 const item : CandidacyType = {
     candidacy_type: "spontané",
@@ -83,6 +84,19 @@ describe('Components CandidacyItem', () => {
 
         it('should display green color with a state accepted', () => {
             assertRowColor(CandidacyStateEnum.accepted, 'table-success');
+        })
+    })
+
+    describe('Action on the row', ()  => {
+        it('should remove element when click delete action', () => {
+            const display = render(<Candidacy />);
+
+            
+            const deleteActionElement : HTMLElement = document.querySelector('#js-action-delete') as HTMLElement;
+            expect(deleteActionElement).toBeInTheDocument();
+            
+            fireEvent.click(deleteActionElement);
+            expect(2).toEqual(display.getAllByTestId('candidacy-item').length);
         })
     })
 })

@@ -6,12 +6,12 @@ import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
 
 export type ItemContextType = {
     items: Array<candidacy>|[],
-    setItems: Function
+    setItems: Function|null
 }
 
-const defaultItemContext : ItemContextType = {
+export const defaultItemContext : ItemContextType = {
     items: [],
-    setItems: () => {}
+    setItems: null
 };
 
 export const ItemArrayContext = React.createContext<ItemContextType>(defaultItemContext);
