@@ -15,9 +15,21 @@ describe('Testing candidacy model', () => {
         let context = getContextCandidacy();
         const candidacyRemove : candidacy = context.items[0];
 
-        deleteCandidacy(context, candidacyRemove);
+        const result = deleteCandidacy(context, candidacyRemove);
 
         expect(context.setItems).toHaveBeenCalled();
+        expect(true).toEqual(result)
     });
 
+    it("shouldn't return false value if setItems value is null", () => {
+        const context : ItemContextType = {
+            items : CandidacyFaker,
+            setItems : null
+        };
+
+        const candidacyRemove : candidacy = context.items[0];
+        let result =  deleteCandidacy(context, candidacyRemove);
+
+        expect(false).toEqual(result);
+    })
 })
