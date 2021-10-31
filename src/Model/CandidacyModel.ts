@@ -8,6 +8,9 @@ import { candidacy } from "../Pages/Candidacy/Types/CandidacyType";
  * @param candidacy Candidature a supprimer
  **/
 export const deleteCandidacy = (contextCandidacy : ItemContextType, candidacy : candidacy) : void => {
-    const itemsArray = contextCandidacy.items.filter(item => item !== candidacy);
-    contextCandidacy.setItems(itemsArray);
+    const itemsArray : candidacy[] = contextCandidacy.items.filter(item => item !== candidacy);
+
+    if(contextCandidacy.setItems) {
+        contextCandidacy.setItems(itemsArray);
+    }
 }
