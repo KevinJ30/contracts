@@ -2,3 +2,48 @@
 
 @import './utils/icons';
 @import './utils/colors';
+
+.modal {
+    background-color:rgba(0, 0, 0, .50);
+}
+
+.modal-fade {
+    animation: fade-in-top;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+}
+
+.modal-fade-close {
+    animation: fade-out-top;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+}
+
+.modal-content {
+    border:none;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+@keyframes fade-in-top {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out-top {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
