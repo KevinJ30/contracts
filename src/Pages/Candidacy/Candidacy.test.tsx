@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
-import Candidacy from "./Candidacy";
-import React from "react";
+import Candidacy, { ItemContextType, defaultItemContext } from "./Candidacy";
+
 
 describe('Candidacy pages test', () => {
     it('should display heading on the page', () => {
@@ -13,6 +13,6 @@ describe('Candidacy pages test', () => {
         render(<Candidacy />);
 
         let candidacyTableItem : NodeListOf<HTMLTableRowElement> = document.querySelectorAll('table tbody tr');
-        expect(2).toEqual(candidacyTableItem.length);
+        expect(3).toEqual(candidacyTableItem.length);
     });
 })
