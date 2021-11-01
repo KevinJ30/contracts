@@ -29,10 +29,11 @@ export function FormCandidacy(props : PropsType) : JSX.Element {
                 }
             ]
         })
+
+        props.onCloseModal(false);
     }
 
     useEffect(() => {
-        // Initialisation de la date du jour par défaut dans le formulaire
         const dateDepotInput : HTMLInputElement = formRef.current.querySelector('#date_deposit');
         const date = new Date();
         
@@ -56,7 +57,7 @@ export function FormCandidacy(props : PropsType) : JSX.Element {
 
                             <div className="form-group mb-3">
                                 <label htmlFor="candidature_type">Type de candidature</label>
-                                <select name="candidacy_type" className="form-control">
+                                <select id="candidacy_type" name="candidacy_type" className="form-control">
                                     <option value="">Choisissez un type</option>
                                     <option value="spontane">Spontané</option>
                                     <option value="annonce">Annonce</option>
