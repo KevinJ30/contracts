@@ -1,69 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
-import {candidacy, candidacy as CandidacyType} from './Types/CandidacyType';
-import {CandidacyFaker} from "../../Data/_CandidacyFaker";
 import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
 import { Modal } from '../../Components/Modal/Modal';
+import { CandidacyFaker } from '../../Data/_CandidacyFaker';
+import { FormCandidacy } from '../../Elements/Form/Candidacy/FormCandidacy';
+import { CandidacyAction, CandidacyActionEnum, CandidacyReducer, CandidacyState } from './Reducer/CandidacyReducer';
+import { candidacy } from './Types/CandidacyType';
 
 export type ItemContextType = {
-    items: Array<candidacy>|[],
-    setItems: Function|null
+    state : CandidacyState,
+    dispatch: React.Dispatch<CandidacyAction>
 }
 
+export const defaultDispatchFunction = () : null => null;
+
 export const defaultItemContext : ItemContextType = {
-    items: [],
-    setItems: null
+    state: {
+        items : []
+    },
+    dispatch: defaultDispatchFunction
 };
 
 export const ItemArrayContext = React.createContext<ItemContextType>(defaultItemContext);
 
 export default function Candidacy() : JSX.Element {
-    const [candidacy, setCandidacy] = useState<CandidacyType[]>([])
+    const [state, dispatch] = useReducer(CandidacyReducer, {items: []});
+    const [stateModal, setStateModal] = useState(false);
 
     useEffect(() => {
-        setCandidacy(CandidacyFaker);
+        dispatch({
+            type: CandidacyActionEnum.STORE,
+            payload: CandidacyFaker
+        });
     }, [])
 
     return (
         <main className={"page page-candidacy"}>
-            <div className="container">
-                <h1>Toutes vos candidatures</h1>
-                <table className={"table table-striped"}>
-                    <thead>
-                    <tr>
-                        <th>Type de candidature</th>
-                        <th>Nom de l'entrepise</th>
-                        <th>Lien vers l'annonce</th>
-                        <th>Date de dépôt</th>
-                        <th>Date de relance</th>
-                        <th>État</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <ItemArrayContext.Provider value={
+            <ItemArrayContext.Provider value={
                             {
-                                items : candidacy,
-                                setItems: setCandidacy
+                                state : state,
+                                dispatch: dispatch
                             }
                         }>
-                            { candidacy.map(
-                                (item, key) =>
-                                    
-                                    <CandidacyItem key={key}  item={item} />
-                                )
-                            }
-                        </ItemArrayContext.Provider>
-                    </tbody>
-                </table>
-            </div>
 
-            <Modal title={"Ma super Modal"} actionContent={"Ouvrire la modal"} actionClassName="btn btn-primary">
                 <div className="container">
-                    <h1>Ma super Modal</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eveniet minima cupiditate dicta molestiae delectus itaque nulla? Sequi, praesentium natus esse tempora dolorum quibusdam numquam nobis voluptatibus libero, harum aliquam officiis, dolore dolor recusandae ex possimus blanditiis consectetur odio voluptas!</p>
+                    <h1>Toutes vos candidatures</h1>
+                    
+                    <Modal actionClassName={"btn btn-primary"} title="Ma modal" actionContent="Ajouter une candidature" open={stateModal} onClose={setStateModal} >
+                        <React.Fragment>
+                            <h2>Créer votre candidature</h2>
+
+                            <FormCandidacy onCloseModal={setStateModal}  />
+                        </React.Fragment>
+                    </Modal>
+                    <table className={"table table-striped"}>
+                        <thead>
+                        <tr>
+                            <th>Type de candidature</th>
+                            <th>Nom de l'entrepise</th>
+                            <th>Lien vers l'annonce</th>
+                            <th>Date de dépôt</th>
+                            <th>Date de relance</th>
+                            <th>État</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                { state.items.map(
+                                    (item : candidacy, key : number) =>
+                                        
+                                        <CandidacyItem key={key}  item={item} />
+                                    )
+                                }
+                        </tbody>
+                    </table>
                 </div>
-            </Modal>
+            </ItemArrayContext.Provider>
         </main>
     );
 }

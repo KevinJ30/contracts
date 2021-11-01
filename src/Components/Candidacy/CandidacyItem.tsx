@@ -6,10 +6,10 @@ import { candidacy as CandidacyType, CandidacyStateEnum } from '../../Pages/Cand
 // Components
 import Date from '../../Components/Date';
 import CandidacyState from './CandidacyState/CandidacyState';
-import { deleteCandidacy } from '../../Model/CandidacyModel';
 import { ItemArrayContext, ItemContextType } from '../../Pages/Candidacy/Candidacy';
 import { ButtonAction } from '../ButtonAction/ButtonAction';
 import { IconDelete } from '../../Elements/Icons/Icons';
+import { CandidacyActionEnum } from '../../Pages/Candidacy/Reducer/CandidacyReducer';
 
 type Props = {
     item: CandidacyType
@@ -46,7 +46,14 @@ export default function CandidacyItem(props: Props) : JSX.Element {
                     <ButtonAction 
                         id={"js-action-delete"}
                         className={'btn btn-danger btn-sm'} 
-                        onAction={() => deleteCandidacy(itemArrayContext, props.item)} 
+                        onAction={
+                            () => {
+                                itemArrayContext.dispatch({
+                                    type: CandidacyActionEnum.DELETE,
+                                    payload: [props.item]
+                                }) 
+                            }
+                        }
                         content={<IconDelete />} 
                     />
                 </td>

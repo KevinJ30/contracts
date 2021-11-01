@@ -14,7 +14,7 @@ export function ModalContent(props : ModalContentPropsType) {
 
     useEffect(() => {
         document.addEventListener('keyup', onEscape);
-
+        
         return () => {
             document.removeEventListener('keyup', onEscape)
         }

@@ -91,7 +91,6 @@ describe('Components CandidacyItem', () => {
         it('should remove element when click delete action', () => {
             const display = render(<Candidacy />);
 
-            
             const deleteActionElement : HTMLElement = document.querySelector('#js-action-delete') as HTMLElement;
             expect(deleteActionElement).toBeInTheDocument();
             
