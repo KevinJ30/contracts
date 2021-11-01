@@ -29,10 +29,11 @@ export function FormCandidacy(props : PropsType) : JSX.Element {
                 }
             ]
         })
+
+        props.onCloseModal(false);
     }
 
     useEffect(() => {
-        // Initialisation de la date du jour par défaut dans le formulaire
         const dateDepotInput : HTMLInputElement = formRef.current.querySelector('#date_deposit');
         const date = new Date();
         
