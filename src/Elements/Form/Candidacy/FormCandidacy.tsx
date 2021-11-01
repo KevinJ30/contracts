@@ -57,7 +57,7 @@ export function FormCandidacy(props : PropsType) : JSX.Element {
 
                             <div className="form-group mb-3">
                                 <label htmlFor="candidature_type">Type de candidature</label>
-                                <select name="candidacy_type" className="form-control">
+                                <select id="candidacy_type" name="candidacy_type" className="form-control">
                                     <option value="">Choisissez un type</option>
                                     <option value="spontane">Spontané</option>
                                     <option value="annonce">Annonce</option>
