@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { fireEvent, render, RenderResult, screen } from "@testing-library/react"
-import { Modal } from "./Modal"
 import { ModalEntryTest } from './ModalEntryTest';
 
 /**
