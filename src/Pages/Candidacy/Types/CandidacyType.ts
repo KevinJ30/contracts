@@ -9,7 +9,7 @@ export enum CandidacyStateEnum {
 export type candidacy = {
     candidacy_type: string,
     business_name: string,
-    url: string,
+    url:  string,
     date_deposit: Date,
     date_relaunch: Date,
     status: number

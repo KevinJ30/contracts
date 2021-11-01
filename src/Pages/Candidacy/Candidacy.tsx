@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import CandidacyItem from '../../Components/Candidacy/CandidacyItem';
 import { Modal } from '../../Components/Modal/Modal';
@@ -24,7 +24,8 @@ export const defaultItemContext : ItemContextType = {
 export const ItemArrayContext = React.createContext<ItemContextType>(defaultItemContext);
 
 export default function Candidacy() : JSX.Element {
-    const [state, dispatch] = useReducer(CandidacyReducer, {items: []})
+    const [state, dispatch] = useReducer(CandidacyReducer, {items: []});
+    const [stateModal, setStateModal] = useState(false);
 
     useEffect(() => {
         dispatch({
@@ -44,11 +45,12 @@ export default function Candidacy() : JSX.Element {
 
                 <div className="container">
                     <h1>Toutes vos candidatures</h1>
-                    <Modal actionClassName={"btn btn-primary"} title="Ma modal" actionContent="Ajouter une candidature">
+                    
+                    <Modal actionClassName={"btn btn-primary"} title="Ma modal" actionContent="Ajouter une candidature" open={stateModal} onClose={setStateModal} >
                         <React.Fragment>
                             <h2>Créer votre candidature</h2>
 
-                            <FormCandidacy />
+                            <FormCandidacy onCloseModal={setStateModal}  />
                         </React.Fragment>
                     </Modal>
                     <table className={"table table-striped"}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { fireEvent, render, RenderResult, screen } from "@testing-library/react"
 import { Modal } from "./Modal"
 
@@ -8,7 +8,7 @@ import { Modal } from "./Modal"
 const renderModal = () : RenderResult  => {
     return render(
         <React.Fragment>
-            <Modal title="Testing Modal" actionContent={"open"}>
+            <Modal title="Testing Modal" actionContent={"open"} open={state} onClose={setState}>
                 <div>
                     <h1>Testing Modal</h1>
                     <p>My good Modal</p>
