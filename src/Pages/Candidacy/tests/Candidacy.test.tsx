@@ -1,5 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import Candidacy, { ItemContextType, defaultItemContext, defaultDispatchFunction } from "./Candidacy";
+import Candidacy, { defaultDispatchFunction } from "../Candidacy";
 
 
 describe('Candidacy pages test', () => {
