@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from "dayjs";
 
-export const DATE_FORMAT = "DD-MM-YYYY";
+export const DATE_FORMAT = "DD/MM/YYYY";
 
 type DateProps = {
     value: Date

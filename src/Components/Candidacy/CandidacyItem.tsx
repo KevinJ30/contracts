@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Type
 import { candidacy as CandidacyType, CandidacyStateEnum } from '../../Pages/Candidacy/Types/CandidacyType';
@@ -8,8 +8,10 @@ import Date from '../../Components/Date';
 import CandidacyState from './CandidacyState/CandidacyState';
 import { ItemArrayContext, ItemContextType } from '../../Pages/Candidacy/Candidacy';
 import { ButtonAction } from '../ButtonAction/ButtonAction';
-import { IconDelete } from '../../Elements/Icons/Icons';
+import { IconDelete, IconPen } from '../../Elements/Icons/Icons';
 import { CandidacyActionEnum } from '../../Pages/Candidacy/Reducer/CandidacyReducer';
+import { Modal } from '../Modal/Modal';
+import { FormCandidacy } from '../../Elements/Form/Candidacy/FormCandidacy';
 
 type Props = {
     item: CandidacyType
@@ -17,6 +19,8 @@ type Props = {
 
 export default function CandidacyItem(props: Props) : JSX.Element {
     const itemArrayContext : ItemContextType = useContext(ItemArrayContext);
+
+    const [modalEdit, setModalEdit] = useState(false);
 
     const stateClass = (status : CandidacyStateEnum) : string => {
         switch(status) {
@@ -36,7 +40,7 @@ export default function CandidacyItem(props: Props) : JSX.Element {
     return (
         <React.Fragment>
             <tr className={stateClass(props.item.status)} data-testid={"candidacy-item"}>
-                <td>{props.item.candidacy_type}</td>
+                <td>{props.item.candidacy_type.value}</td>
                 <td>{props.item.business_name}</td>
                 <td>{props.item.url}</td>
                 <td><Date value={props.item.date_deposit} /></td>
@@ -56,6 +60,12 @@ export default function CandidacyItem(props: Props) : JSX.Element {
                         }
                         content={<IconDelete />} 
                     />
+
+                    <Modal actionClassName={"btn btn-primary btn-sm ms-2 js-action-edit"} title="Modifier votre candidature" actionContent={<IconPen />} open={modalEdit} onClose={setModalEdit} >
+                        <React.Fragment>
+                            <FormCandidacy item={props.item} onCloseModal={setModalEdit}  />
+                        </React.Fragment>
+                    </Modal>
                 </td>
             </tr>
         </React.Fragment>

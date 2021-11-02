@@ -2,7 +2,7 @@ import React, { KeyboardEventHandler, MouseEventHandler, ReactChildren, ReactEle
 
 export type ModalPropsType = {
     title : string,
-    actionContent : HTMLElement | string
+    actionContent : HTMLElement | string | JSX.Element
     actionClassName? : string,
     children : ReactElement<ReactChildren>,
     open : boolean,
