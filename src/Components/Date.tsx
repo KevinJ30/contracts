@@ -9,7 +9,6 @@ type DateProps = {
 
 export default function DateFormat(props : DateProps) {
     const date = dayjs(props.value).format(DATE_FORMAT);
-
     return (
         <React.Fragment>
             {date}

@@ -43,8 +43,8 @@ export default function CandidacyItem(props: Props) : JSX.Element {
                 <td>{props.item.candidacy_type.value}</td>
                 <td>{props.item.business_name}</td>
                 <td>{props.item.url}</td>
-                <td><Date value={props.item.date_deposit} /></td>
-                <td><Date value={props.item.date_deposit} /></td>
+                <td>{props.item.date_deposit}</td>
+                <td>{props.item.date_relaunch}</td>
                 <td><CandidacyState value={props.item.status} /></td>
                 <td>
                     <ButtonAction 

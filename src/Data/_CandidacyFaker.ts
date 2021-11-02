@@ -1,6 +1,8 @@
+import dayjs from "dayjs";
 import {CandidacyStateEnum} from "../Pages/Candidacy/Types/CandidacyType";
 import {candidacy as CandidacyType} from "../Pages/Candidacy/Types/CandidacyType";
 
+const DATE_FORMAT = 'DD/MM/YYYY';
 
 export let CandidacyFakerTest: Array<CandidacyType> = [
     {
@@ -10,8 +12,8 @@ export let CandidacyFakerTest: Array<CandidacyType> = [
         },
         business_name: "Natural Solution",
         url: "https://joudrier-kevin.fr",
-        date_deposit: new Date(),
-        date_relaunch: new Date(),
+        date_deposit: dayjs(new Date()).format(DATE_FORMAT),
+        date_relaunch: dayjs(new Date()).format(DATE_FORMAT),
         status: CandidacyStateEnum.refused
     },
 
@@ -22,8 +24,8 @@ export let CandidacyFakerTest: Array<CandidacyType> = [
         },
         business_name: "Openclassrooms",
         url: "https://joudrier-kevin.fr",
-        date_deposit: new Date(),
-        date_relaunch: new Date(),
+        date_deposit: dayjs(new Date()).format(DATE_FORMAT),
+        date_relaunch: dayjs(new Date()).format(DATE_FORMAT),
         status: CandidacyStateEnum.progress
     }
 ];
@@ -37,8 +39,8 @@ export let CandidacyFaker: Array<CandidacyType> = [
         },
         business_name: "Natural Solution",
         url: "https://joudrier-kevin.fr",
-        date_deposit: new Date(),
-        date_relaunch: new Date(),
+        date_deposit: dayjs(new Date()).format(DATE_FORMAT),
+        date_relaunch: dayjs(new Date()).format(DATE_FORMAT),
         status: CandidacyStateEnum.edit
     },
 
@@ -49,8 +51,8 @@ export let CandidacyFaker: Array<CandidacyType> = [
         },
         business_name: "Openclassrooms",
         url: "https://joudrier-kevin.fr",
-        date_deposit: new Date(),
-        date_relaunch: new Date(),
+        date_deposit: dayjs(new Date()).format(DATE_FORMAT),
+        date_relaunch: dayjs(new Date()).format(DATE_FORMAT),
         status: CandidacyStateEnum.refused
     },
 
@@ -61,8 +63,8 @@ export let CandidacyFaker: Array<CandidacyType> = [
         },
         business_name: "Openclassrooms",
         url: "https://joudrier-kevin.fr",
-        date_deposit: new Date(),
-        date_relaunch: new Date(),
+        date_deposit: dayjs(new Date()).format(DATE_FORMAT),
+        date_relaunch: dayjs(new Date()).format(DATE_FORMAT),
         status: CandidacyStateEnum.progress
     }
 ];

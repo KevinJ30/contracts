@@ -35,8 +35,8 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
                         },
                         business_name: formData.get('business_name') as string,
                         url: formData.get('link') as string,
-                        date_deposit: new Date(formData.get('date_deposit') as string),
-                        date_relaunch : new Date(formData.get('date_relaunch') as string),
+                        date_deposit: formData.get('date_deposit') as string,
+                        date_relaunch : formData.get('date_relaunch') as string,
                         status: CandidacyStateEnum.edit
                     }
                 ]
@@ -52,8 +52,8 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
                         },
                         business_name: formData.get('business_name') as string,
                         url: formData.get('link') as string,
-                        date_deposit: new Date(formData.get('date_deposit') as string),
-                        date_relaunch : new Date(formData.get('date_relaunch') as string),
+                        date_deposit: formData.get('date_deposit') as string,
+                        date_relaunch : formData.get('date_relaunch') as string,
                         status: CandidacyStateEnum.edit
                     }
                 ]
@@ -64,8 +64,8 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
     }
 
     const loadInputDataWithItem = (item : candidacy) : void => {
-        inputDateDepositRef.current.value = dayjs(item.date_deposit).format(DATE_FORMAT);
-        inputDateRelaunchRef.current.value = dayjs(item.date_relaunch).format(DATE_FORMAT);
+        inputDateDepositRef.current.value = item.date_deposit;
+        inputDateRelaunchRef.current.value = item.date_relaunch;
         inputCandidacyTypeRef.current.value = item.candidacy_type.key;
         inputBusinessNameRef.current.value = item.business_name;
         inputLinkRef.current.value = item.url;
