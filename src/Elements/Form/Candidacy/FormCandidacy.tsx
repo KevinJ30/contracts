@@ -1,4 +1,4 @@
-import React, { FormEvent, FormEventHandler, MutableRefObject, useContext, useEffect, useRef } from "react";
+import React, { FormEvent, FormEventHandler, useContext, useEffect, useRef } from "react";
 import { ItemArrayContext, ItemContextType } from "../../../Pages/Candidacy/Candidacy";
 import dayjs from 'dayjs';
 import { candidacy, CandidacyStateEnum } from "../../../Pages/Candidacy/Types/CandidacyType";
@@ -17,7 +17,7 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
     const inputCandidacyTypeRef : any = useRef(null);
     const inputBusinessNameRef : any = useRef(null);
     const inputLinkRef : any = useRef(null);
-    const inputStatusRef : any = useRef(null);
+    //const inputStatusRef : any = useRef(null);
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event : FormEvent) => {
         event.preventDefault();
@@ -75,12 +75,10 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
         if(props.item) {
             loadInputDataWithItem(props.item)
         } else {
-            const dateDepotInput : HTMLInputElement = formRef.current.querySelector('#date_deposit');
-            const date = new Date();
-            dateDepotInput.value = dayjs(date).format(DATE_FORMAT);
+            inputDateDepositRef.current.value = dayjs(new Date()).format(DATE_FORMAT);
+            inputDateRelaunchRef.current.value = dayjs(new Date()).format(DATE_FORMAT);
         }
-
-    }, [])
+    }, [props.item])
 
     return (
         <React.Fragment>

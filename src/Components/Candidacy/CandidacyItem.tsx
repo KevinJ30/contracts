@@ -4,7 +4,6 @@ import React, { useState, useContext } from 'react';
 import { candidacy as CandidacyType, CandidacyStateEnum } from '../../Pages/Candidacy/Types/CandidacyType';
 
 // Components
-import Date from '../../Components/Date';
 import CandidacyState from './CandidacyState/CandidacyState';
 import { ItemArrayContext, ItemContextType } from '../../Pages/Candidacy/Candidacy';
 import { ButtonAction } from '../ButtonAction/ButtonAction';
