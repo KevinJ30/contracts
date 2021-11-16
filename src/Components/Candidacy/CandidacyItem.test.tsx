@@ -7,11 +7,14 @@ import { DATE_FORMAT } from '../Date';
 import Candidacy from '../../Pages/Candidacy/Candidacy';
 
 const item : CandidacyType = {
-    candidacy_type: "spontané",
+    candidacy_type: {
+        key: 'spontane',
+        value: 'Spontané'
+    },
     business_name: "Natural Solution",
     url: "https://joudrier-kevin.fr",
-    date_deposit: new Date(),
-    date_relaunch: new Date(),
+    date_deposit: '01/01/2021',
+    date_relaunch: '01/01/2021',
     status: CandidacyStateEnum.refused
 }
 
@@ -57,7 +60,7 @@ describe('Components CandidacyItem', () => {
         let tableRow = document.querySelector('tr');
         let iconStatus = document.querySelector('.state');
 
-        expect(tableRow).toHaveTextContent(item.candidacy_type);
+        expect(tableRow).toHaveTextContent(item.candidacy_type.value);
         expect(tableRow).toHaveTextContent(item.business_name);
         expect(tableRow).toHaveTextContent(dayjs(item.date_deposit).format(DATE_FORMAT))
         expect(tableRow).toHaveTextContent(dayjs(item.date_relaunch).format(DATE_FORMAT))

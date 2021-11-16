@@ -3,7 +3,8 @@ import { candidacy } from "../Types/CandidacyType";
 export enum CandidacyActionEnum {
     CREATE = 'create',
     STORE = 'store',
-    DELETE = 'delete'
+    DELETE = 'delete',
+    EDIT = 'edit'
 }
 
 export type CandidacyState = {
@@ -12,7 +13,8 @@ export type CandidacyState = {
 
 export type CandidacyAction = {
     type: CandidacyActionEnum,
-    payload : candidacy[]
+    payload : candidacy[],
+    item ?: candidacy
 }
 
 /**
@@ -30,7 +32,20 @@ export function CandidacyReducer(state : CandidacyState, action : CandidacyActio
             return {
                 ...state,
                 items: action.payload
-            };
+            };    
+        case CandidacyActionEnum.EDIT:
+            const newEditList = state.items.map(function(itemIterator) {
+                if(itemIterator === action.item) {
+                    return action.payload[0];
+                }
+
+                return itemIterator;
+            })    
+        
+            return {
+                ...state,
+                items: newEditList
+            }
 
         case CandidacyActionEnum.DELETE:
             const newItemsList = state.items.filter(item => action.payload[0] !== item);
@@ -39,6 +54,7 @@ export function CandidacyReducer(state : CandidacyState, action : CandidacyActio
                 ...state,
                 items: newItemsList
             }
+
         default :
             return state;
     }

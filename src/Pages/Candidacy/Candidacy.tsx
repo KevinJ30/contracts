@@ -46,13 +46,12 @@ export default function Candidacy() : JSX.Element {
                 <div className="container">
                     <h1>Toutes vos candidatures</h1>
                     
-                    <Modal actionClassName={"btn btn-primary"} title="Ma modal" actionContent="Ajouter une candidature" open={stateModal} onClose={setStateModal} >
+                    <Modal actionClassName={"btn btn-primary"} title="Créer une candidature" actionContent="Ajouter une candidature" open={stateModal} onClose={setStateModal} >
                         <React.Fragment>
-                            <h2>Créer votre candidature</h2>
-
                             <FormCandidacy onCloseModal={setStateModal}  />
                         </React.Fragment>
                     </Modal>
+
                     <table className={"table table-striped"}>
                         <thead>
                         <tr>
