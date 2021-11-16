@@ -17,7 +17,7 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
     const inputCandidacyTypeRef : any = useRef(null);
     const inputBusinessNameRef : any = useRef(null);
     const inputLinkRef : any = useRef(null);
-    //const inputStatusRef : any = useRef(null);
+    const inputStatusRef : any = useRef(null);
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event : FormEvent) => {
         event.preventDefault();
@@ -37,7 +37,7 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
                         url: formData.get('link') as string,
                         date_deposit: formData.get('date_deposit') as string,
                         date_relaunch : formData.get('date_relaunch') as string,
-                        status: CandidacyStateEnum.edit
+                        status: parseInt(formData.get('candidacy_status') as string)
                     }
                 ]
             })
@@ -59,7 +59,6 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
                 ]
             })
         }
-
         props.onCloseModal(false);
     }
 
@@ -68,6 +67,7 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
         inputDateRelaunchRef.current.value = item.date_relaunch;
         inputCandidacyTypeRef.current.value = item.candidacy_type.key;
         inputBusinessNameRef.current.value = item.business_name;
+        inputLinkRef.current.value = item.url;
         inputLinkRef.current.value = item.url;
     }
 
@@ -113,6 +113,19 @@ export function FormCandidacy(props : FromPropsType) : JSX.Element {
                                 <label htmlFor="link">Liens vers l'annonce</label>
                                 <input ref={inputLinkRef} id={"link"} type="text" className={"form-control"} placeholder={"https://..."} name={"link"}/>
                             </div>
+
+                            {props.item && 
+                                <div className="form-group mb-3">
+                                    <label htmlFor="candidacy_status">Status de la candidature</label>
+                                    <select ref={inputStatusRef} id="candidacy_status" name="candidacy_status" className="form-control" defaultValue={props.item.status}>
+                                        <option value={CandidacyStateEnum.edit}>Edition</option>
+                                        <option value={CandidacyStateEnum.progress}>En cours</option>
+                                        <option value={CandidacyStateEnum.relaunch}>Relancer</option>
+                                        <option value={CandidacyStateEnum.accepted}>Accepter</option>
+                                        <option value={CandidacyStateEnum.refused}>Refuser</option>
+                                    </select>
+                                </div>
+                            }
 
                             <button type="submit" className={"btn btn-primary"}>
                                 { props.item ? 'Modifier la candidature' : 'Créer la candidature'}

@@ -29,8 +29,8 @@ describe("Edition d'une candidature", () => {
     it('should open the modal with data item in the fields', () => {
         renderCandidacyPage();
         openFormEdit();
-
-        // const inputDateDeposit = document.getElementById('')
+        
+        screen.debug();
     })
 
 })

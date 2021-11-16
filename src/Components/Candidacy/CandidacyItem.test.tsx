@@ -13,8 +13,8 @@ const item : CandidacyType = {
     },
     business_name: "Natural Solution",
     url: "https://joudrier-kevin.fr",
-    date_deposit: new Date(),
-    date_relaunch: new Date(),
+    date_deposit: '01/01/2021',
+    date_relaunch: '01/01/2021',
     status: CandidacyStateEnum.refused
 }
 
